@@ -7,9 +7,13 @@ This sample shows integration of Spring Web Application with RooX UIDM.
  This sample uses src/main/resources/application.properties, but any Spring configuration system will go.
  
 `com.rooxteam.aal.sso.endpoint` UIDM Base Url, like https://wtl.demo.rooxteam.com/sso
+
 `com.rooxteam.aal.auth.client` OAuth Client ID
-`com.rooxteam.aal.auth.password` OAuth Client Secret 
-`com.rooxteam.aal.jwt.issuer` JWT Issue to check if UIDM SDK works in JWT mode. Not used if SDK validates token on UIDM server, but must be set to any value. 
+
+`com.rooxteam.aal.auth.password` OAuth Client Secret
+ 
+`com.rooxteam.aal.jwt.issuer` JWT Issue to check if UIDM SDK works in JWT mode. Not used if SDK validates token on UIDM server, but must be set to any value.
+ 
 `com.rooxteam.aal.token.info.forward.attributes` List of token properties (aka claims) that are visible to controllers and business layer.
  
  Typically these properties are provided from Project Manager or Engineer of Support Service.
