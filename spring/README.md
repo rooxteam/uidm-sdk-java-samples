@@ -29,7 +29,7 @@ This sample shows integration of Spring Web Application with RooX UIDM.
  Authenticate in Web Browser passing one of login use cases.
  Get access token from `at` cookie after it.
  
- ## Invoke Sample API
+ ## Invoke Sample Token Introspection API
  
  ```
 token=e5e58de5-d62e-4abb-aec4-b7449efc0378 <== token from previous step
@@ -38,3 +38,36 @@ curl -v http://localhost:8080/api/tokens/@current -H "Authorization: Bearer sso_
 ```
  
  Sample prints authentication context info if provided token is valid.
+ 
+ ## Invoke Sample Token Introspection API
+  
+  ```
+ token=e5e58de5-d62e-4abb-aec4-b7449efc0378 <== token from previous step
+ curl -v http://localhost:8080/api/tokens/@current -H "Authorization: Bearer sso_1.0_$token"
+ 
+ ```
+  
+  Sample prints authentication context info if provided token is valid.
+  
+  For details see `com.example.uidmdemo.controllers.TokenIntrospectionController`
+  
+ ## Invoke Sample Policy Evaluation API
+  
+  ```
+ token=e5e58de5-d62e-4abb-aec4-b7449efc0378 <== token from previous step
+ curl -v http://localhost:8080/api/offices -H "Authorization: Bearer sso_1.0_$token"
+ 
+ ```
+  
+  Sample prints string if UIDM allowes invocation. Really it has configured policy.
+   
+  ```
+ token=e5e58de5-d62e-4abb-aec4-b7449efc0378 <== token from previous step
+ curl -v http://localhost:8080/api/offices -H "Authorization: Bearer sso_1.0_$token" -X POST
+ 
+ ```
+  
+  Sample outputs 403 code because POST method is disallowed on UIDM.
+  
+  For details see `com.example.uidmdemo.controllers.PolicyEvaluationController`
+   
