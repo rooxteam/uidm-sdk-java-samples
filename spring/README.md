@@ -70,4 +70,12 @@ curl -v http://localhost:8080/api/tokens/@current -H "Authorization: Bearer sso_
   Sample outputs 403 code because POST method is disallowed on UIDM.
   
   For details see `com.example.uidmdemo.controllers.PolicyEvaluationController`
-   
+
+ ## System Token Sample
+  
+  ```
+ curl -v http://localhost:8080/api/systemtoken/@token
+ 
+ ```
+  
+  This sample requests new system token and prints in in the response body    
