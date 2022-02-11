@@ -10,10 +10,13 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
 dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation "com.rooxteam.uidm.sdk:auth-lib-spring:$uidmSdkVersion"
 	implementation'org.springframework.boot:spring-boot-starter-web'

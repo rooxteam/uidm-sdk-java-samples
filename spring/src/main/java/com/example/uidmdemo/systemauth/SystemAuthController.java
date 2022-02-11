@@ -1,6 +1,5 @@
 package com.example.uidmdemo.systemauth;
 
-import com.rooxteam.sso.clientcredentials.ClientAuthenticationException;
 import com.rooxteam.sso.clientcredentials.ClientCredentialsClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +22,12 @@ public class SystemAuthController {
 
 
     @GetMapping(value = "@header", produces = "application/json")
-    public String getAuthHeader(HttpServletRequest httpServletRequest) throws ClientAuthenticationException {
+    public String getAuthHeader(HttpServletRequest httpServletRequest) {
         return clientCredentialsClient.getAuthHeaderValue();
     }
 
     @GetMapping(value = "@token", produces = "application/json")
-    public String getToken(HttpServletRequest httpServletRequest) throws ClientAuthenticationException {
+    public String getToken(HttpServletRequest httpServletRequest) {
         return clientCredentialsClient.getToken();
     }
 }

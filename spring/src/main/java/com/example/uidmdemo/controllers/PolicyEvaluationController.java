@@ -26,4 +26,5 @@ public class PolicyEvaluationController {
     public String disallowedsample() {
         return "you will never get me, because POST is prohibited";
     }
+
 }

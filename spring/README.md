@@ -78,4 +78,54 @@ curl -v http://localhost:8080/api/tokens/@current -H "Authorization: Bearer sso_
  
  ```
   
-  This sample requests new system token and prints in in the response body    
+  This sample requests new system token and prints in in the response body
+  
+
+ ## OPA policy engine and postprocessing
+
+```
+GET http://localhost:8080/api/persons
+Authorization: Bearer {{ access_token }}
+```
+
+To get sample working you should preconfigure policies
+
+```rego
+package authz
+
+default isAllowed = {
+    "decision": "Deny"
+}
+
+isAllowed = response {
+    input.evaluationContext.resourceName == "/persons"
+    input.evaluationContext.actionName == "GET"
+    token := validateToken
+    token.auth_level == "5"
+    response:= {
+                   "decision": "Permit",
+                   "claims": token
+               }
+}
+
+allowed_offices[person] {
+    some person in input.dataToPostprocess
+    person.officeId==1
+}
+
+postprocess = response {
+    isAllowed
+    response:= allowed_offices
+}
+
+```
+
+And add webapi configuration using spring boot config system or rooxconfig
+```properties
+com.rooxteam.aal.opa.data_api.endpoint=http://localhost:8181/v1/data
+
+com.rooxteam.aal.opa.package=authz
+
+com.rooxteam.aal.authorization_type=OPA
+```
+
